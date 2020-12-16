@@ -1,0 +1,222 @@
+﻿<Window x:Class="FlowMetrics.View.WorkItems.EditWorkItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlowMetrics.View.WorkItems"
+        mc:Ignorable="d"
+        Title="Edit Work Item"
+        Height="465"
+        Width="800"
+        ResizeMode="NoResize"
+        FontFamily="Century Gothic"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DimGray">
+            <Label HorizontalAlignment="Left" FontSize="18" Foreground="White">Edit Work Item</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="98*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="48*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="49*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="49*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" FontWeight="Medium">ISSUE ID</Label>
+                        <Label Grid.Column="2" FontWeight="Medium">EPIC</Label>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="49*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="49*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBox Grid.Column="0" x:Name="IssueID" Height="22" VerticalContentAlignment="Center"></TextBox>
+                        <ComboBox
+                            Grid.Column="2"
+                            x:Name="CbbEpic"
+                            SelectedValue="{Binding Path=EpicViewModel}"
+                            DisplayMemberPath="Description"
+                            SelectedValuePath="Description"
+                            IsSynchronizedWithCurrentItem="True"
+                            VerticalAlignment="Center" 
+                            BorderBrush="DarkGray"
+                            VerticalContentAlignment="Center"
+                            IsEditable="True"
+                            Height="22">
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="0" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="32*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="32*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" FontWeight="Medium">WEEK</Label>
+                        <Label Grid.Column="2" FontWeight="Medium">ISSUE TYPE</Label>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="32*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="32*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <ComboBox
+                            Grid.Column="0"
+                            x:Name="CbbWeek"
+                            SelectedValue="{Binding Path=WeekViewModel}"
+                            DisplayMemberPath="Description"
+                            SelectedValuePath="Description"
+                            VerticalAlignment="Center" 
+                            BorderBrush="DarkGray"
+                            VerticalContentAlignment="Center"
+                            Height="22">
+                        </ComboBox>
+
+                        <ComboBox
+                            Grid.Column="2"
+                            x:Name="CbbType"
+                            SelectedValue="Type"
+                            SelectedItem="Type"
+                            DisplayMemberPath="{Binding Type}"
+                            VerticalAlignment="Center"
+                            BorderBrush="DarkGray"
+                            VerticalContentAlignment="Center"
+                            IsEditable="True"
+                            Height="22">
+                        </ComboBox>
+
+                        <CheckBox Grid.Column="4" x:Name="TechDebt" VerticalAlignment="Center">TECH DEBT</CheckBox>
+                    </Grid>
+
+                    <Label Grid.Row="2" Grid.Column="0" FontWeight="Medium">STATUS</Label>
+                    <ComboBox
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        x:Name="CbbStatus"
+                        SelectedValue="Type"
+                        SelectedItem="Type"
+                        DisplayMemberPath="{Binding Type}"
+                        VerticalAlignment="Center"
+                        BorderBrush="DarkGray"
+                        VerticalContentAlignment="Center"
+                        Height="22">
+                    </ComboBox>
+
+                    <Label Grid.Row="2" Grid.Column="2" FontWeight="Medium">DATE STATUS CHANGED</Label>
+                    <DatePicker Grid.Row="3" Grid.Column="2" x:Name="DateStatusChanged" Height="24" VerticalContentAlignment="Center"></DatePicker>
+
+                    <Label Grid.Row="4" Grid.Column="0" FontWeight="Medium">ACCEPTANCE RELEASE DATE</Label>
+                    <DatePicker Grid.Row="5" Grid.Column="0" x:Name="AcceptanceReleaseDate" Height="24" VerticalContentAlignment="Center"></DatePicker>
+
+                    <Label Grid.Row="4" Grid.Column="2" FontWeight="Medium">PRODUCTION RELEASE DATE</Label>
+                    <DatePicker Grid.Row="5" Grid.Column="2" x:Name="ProductionReleaseDate" Height="24" VerticalContentAlignment="Center"></DatePicker>
+
+                    <Label Grid.Row="6" Grid.Column="0" FontWeight="Medium">ASSIGNEE</Label>
+                    <ComboBox
+                        Grid.Row="7"
+                        Grid.Column="0"
+                        x:Name="CbbAssignee"
+                        SelectedValue="{Binding Path=AssigneeViewModel}"
+                        DisplayMemberPath="Name"
+                        SelectedValuePath="Name"
+                        VerticalAlignment="Center"
+                        BorderBrush="DarkGray"
+                        VerticalContentAlignment="Center"
+                        IsEditable="True"
+                        Height="22">
+                    </ComboBox>
+
+                    <Label Grid.Row="6" Grid.Column="2" FontWeight="Medium">TEAM</Label>
+                    <ComboBox
+                        Grid.Row="7"
+                        Grid.Column="2"
+                        x:Name="CbbTeam"                        
+                        DisplayMemberPath="{Binding Type}"
+                        SelectedValue="Type"
+                        SelectedItem="Type"
+                        VerticalAlignment="Center"
+                        BorderBrush="DarkGray"
+                        VerticalContentAlignment="Center"
+                        IsEditable="True"
+                        Height="22">
+                    </ComboBox>
+                    
+                    <Label Grid.Row="10" Grid.Column="0" FontWeight="Medium">START IMPEDIMENT AT</Label>
+                    <DatePicker Grid.Row="11" Grid.Column="0" x:Name="StartImpedimentAt" Height="24" VerticalContentAlignment="Center"></DatePicker>
+                    <Label Grid.Row="10" Grid.Column="2" FontWeight="Medium">END IMPEDIMENT AT</Label>
+                    <DatePicker Grid.Row="11" Grid.Column="2" x:Name="EndImpedimentAt" Height="24" VerticalContentAlignment="Center"></DatePicker>
+
+                    <Label Grid.Row="12" Grid.Column="0" FontWeight="Medium">MORE INFORMATION</Label>
+                    <TextBox Grid.Row="13" Grid.Column="0" x:Name="ImpObservation" TextWrapping="Wrap" MaxLength="255"></TextBox>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="2" Margin="5 0 0 0" x:Name="Cancel" Click="Cancel_Click" Height="22" Background="Transparent" BorderBrush="DarkGray" VerticalAlignment="Center">Cancel</Button>
+                    <Button Grid.Column="3" Margin="5 0 0 0" x:Name="UpdateWorkItem" Click="Update_Click" Height="22" Background="Transparent" BorderBrush="DarkGray" VerticalAlignment="Center">Update</Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

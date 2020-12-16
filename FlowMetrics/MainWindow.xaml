@@ -1,0 +1,81 @@
+﻿<Window x:Class="FlowMetrics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlowMetrics"
+        mc:Ignorable="d"
+        Title="Monitor"
+        MinHeight="768"
+        MinWidth="1024"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Century Gothic">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="95*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#546e7a">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="28*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1">
+                    <Label x:Name="userLogged" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 15 0" FontSize="14" Foreground="White"></Label>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="9*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="98*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkSlateGray">MENU</Label>
+
+                <DockPanel Grid.Column="1" Grid.Row="1">
+                    <Border CornerRadius="2" BorderBrush="DarkGray" Background="White" BorderThickness="1" DockPanel.Dock="Top">
+                        <StackPanel>
+                            <TreeView Background="White" Grid.Column="0" BorderBrush="Transparent" x:Name="tv" SelectedItemChanged="tv_SelectedItemChanged">
+                                <TreeViewItem Header="Epics" />
+                                <TreeViewItem Header="Stock">
+                                    <TreeViewItem Header="Bugs" />
+                                    <TreeViewItem Header="Technical debts" />
+                                    <TreeViewItem Header="Impediments" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="Work items" />
+                                <TreeViewItem Header="OKR'S">
+                                    <TreeViewItem Header="Objectives" />
+                                    <TreeViewItem Header="Key Results" />
+                                    <TreeViewItem Header="Initiatives" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="Users" />
+                                <TreeViewItem Header="Configuration">
+                                    <TreeViewItem Header="Impediment category" />
+                                    <TreeViewItem Header="Weeks" />
+                                </TreeViewItem>
+                            </TreeView>
+                        </StackPanel>
+                    </Border>
+                </DockPanel>
+
+                <DockPanel Grid.Column="3" Grid.Row="1">
+                    <Frame x:Name="ContentArea" NavigationUIVisibility="Hidden"></Frame>
+                </DockPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

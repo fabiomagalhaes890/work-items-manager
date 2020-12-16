@@ -1,0 +1,80 @@
+﻿<Window x:Class="FlowMetrics.View.Weeks.CreateWeek"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlowMetrics.View.Weeks"
+        mc:Ignorable="d"
+        Title="Create Week"
+        Height="300"
+        Width="400"
+        ResizeMode="NoResize"
+        FontFamily="Century Gothic"
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DimGray">
+            <Label HorizontalAlignment="Left" FontSize="18" Foreground="White">Create Week</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="98*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="48*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" FontWeight="Medium">WEEK STARTS</Label>
+                    <DatePicker Grid.Row="1" Grid.Column="0" x:Name="IncludeDate" Height="24" VerticalContentAlignment="Center"></DatePicker>
+
+                    <Label Grid.Row="0" Grid.Column="2" FontWeight="Medium">WEEK ENDS</Label>
+                    <DatePicker Grid.Row="1" Grid.Column="2" x:Name="EndDate" Height="24" VerticalContentAlignment="Center"></DatePicker>
+
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="2" Margin="5 0 0 0" x:Name="Cancel" Click="Cancel_Click" Height="22" Background="Transparent" BorderBrush="DarkGray" VerticalAlignment="Center">Cancel</Button>
+                    <Button Grid.Column="3" Margin="5 0 0 0" x:Name="Create" Click="Create_Click" Height="22" Background="Transparent" BorderBrush="DarkGray" VerticalAlignment="Center">Create</Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
