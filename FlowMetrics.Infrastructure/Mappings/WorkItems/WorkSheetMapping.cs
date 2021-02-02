@@ -32,6 +32,7 @@ namespace FlowMetrics.Infrastructure.Mappings.WorkItems
             builder.Property(x => x.EndImpedimentDate);
             builder.Property(x => x.Observations);
             builder.Property(x => x.AssigneeTeam);
+            builder.Property(x => x.Priority).IsRequired(false);
 
             builder.HasOne(x => x.WorkItem);
             builder.Property(x => x.WorkItemId).IsRequired();

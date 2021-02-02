@@ -50,10 +50,7 @@
                         <StackPanel>
                             <TreeView Background="White" Grid.Column="0" BorderBrush="Transparent" x:Name="tv" SelectedItemChanged="tv_SelectedItemChanged">
                                 <TreeViewItem Header="Epics" />
-                                <TreeViewItem Header="Stock">
-                                    <TreeViewItem Header="Bugs" />
-                                    <TreeViewItem Header="Technical debts" />
-                                    <TreeViewItem Header="Impediments" />
+                                <TreeViewItem Header="Stocks">
                                 </TreeViewItem>
                                 <TreeViewItem Header="Work items" />
                                 <TreeViewItem Header="OKR'S">
@@ -63,7 +60,8 @@
                                 </TreeViewItem>
                                 <TreeViewItem Header="Users" />
                                 <TreeViewItem Header="Configuration">
-                                    <TreeViewItem Header="Impediment category" />
+                                    <TreeViewItem Header="Product" />
+                                    <TreeViewItem Header="Impediment types" />
                                     <TreeViewItem Header="Weeks" />
                                 </TreeViewItem>
                             </TreeView>

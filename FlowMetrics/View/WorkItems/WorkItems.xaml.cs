@@ -251,5 +251,23 @@ namespace FlowMetrics.View.WorkItems
 
             LoadWorkItems(filters);
         }
+
+        private void DataGridWorkItem_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _workItem = (WorkItemViewModel)DataGridWorkItem.SelectedItem;
+
+            if (_workItem != null)
+            {
+                if (MessageBox.Show(string.Format("Would you like delete work item {0}?", _workItem.IssueId), "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {                
+                    _workApplicationService.DeleteWorkItem(_workItem.Id);
+
+                    var filters = GetFilters();
+                    filters.TechDebt = null;
+
+                    LoadWorkItems(filters);
+                }
+            }
+        }
     }
 }

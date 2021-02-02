@@ -10,5 +10,7 @@ namespace FlowMetrics.Domain.Interfaces
     {
         IEnumerable<WorkItemViewModel> GetWorkItemsByFilter(FilterToWorkItem filter);
         WorkItemViewModel CreateOrUpdate(WorkItemViewModel workItemViewModel, DateTime? date);
+        IEnumerable<WorkItemViewModel> GetStockItemsByFilter(FilterToWorkItem filter);
+        void DeleteWorkItem(Guid? id);
     }
 }

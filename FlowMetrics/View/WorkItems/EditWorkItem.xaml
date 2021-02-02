@@ -195,7 +195,21 @@
                         IsEditable="True"
                         Height="22">
                     </ComboBox>
-                    
+
+                    <Label Grid.Row="8" Grid.Column="0" FontWeight="Medium">PRIORITY</Label>
+                    <ComboBox
+                        Grid.Row="9"
+                        x:Name="CbbPriority"
+                        SelectedValue="Type"
+                        SelectedItem="Type"
+                        DisplayMemberPath="{Binding Type}"
+                        VerticalAlignment="Center"
+                        BorderBrush="DarkGray"
+                        VerticalContentAlignment="Center"
+                        IsEditable="True"
+                        Height="22">
+                    </ComboBox>
+
                     <Label Grid.Row="10" Grid.Column="0" FontWeight="Medium">START IMPEDIMENT AT</Label>
                     <DatePicker Grid.Row="11" Grid.Column="0" x:Name="StartImpedimentAt" Height="24" VerticalContentAlignment="Center"></DatePicker>
                     <Label Grid.Row="10" Grid.Column="2" FontWeight="Medium">END IMPEDIMENT AT</Label>

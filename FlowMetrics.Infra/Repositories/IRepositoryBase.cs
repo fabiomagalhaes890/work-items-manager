@@ -11,5 +11,6 @@ namespace FlowMetrics.Infra.Repositories
         void Update(TEntity entity);
         TEntity Find(Guid id);
         IQueryable<TEntity> GetAll();
+        void Remove(TEntity entity);
     }
 }

@@ -84,6 +84,9 @@ namespace FlowMetrics.Domain.Services
                 result.SetEndImpedimentDate(model.EndImpedimentDate);
                 result.SetObservations(model.Observations);
                 result.SetTeam(team);
+                result.SetTechDebt(model.TechDebt);
+                result.SetPriority(model.Priority);
+
                 result.AssigneeId = assignee?.Id;                
 
                 if (dateChanged != null)
@@ -132,6 +135,7 @@ namespace FlowMetrics.Domain.Services
             result.WorkItemId = workItem.Id;
             result.CreatedBy = "master";
             result.AssigneeTeam = workItem.Team;
+            result.Priority = workItem.Priority.ToString();
 
             return result;
         }
@@ -226,6 +230,28 @@ namespace FlowMetrics.Domain.Services
             return workItems.OrderByDescending(x => x.UpdatedAt).ToList();
         }
 
+        public IEnumerable<WorkItemViewModel> GetStockItemsByFilter(FilterToWorkItem filter)
+        {
+            var result = _workRepository.GetAll().ToList();
+
+            result = result.Where(x => x.ToDoDate == null).ToList();
+
+            if (filter.Type != null)
+                result = result.Where(x => x.Type == filter.Type).ToList();
+            else if (filter.TechDebt != null)
+                result = result.Where(x => x.TechDebt == filter.TechDebt).ToList();
+
+            var workItems = _mapper.Map<IEnumerable<WorkItemViewModel>>(result);
+
+            workItems = workItems.Select(x =>
+            {
+                x.StatusDate = GetStatusDate(x);
+                return x;
+            }).ToList();
+
+            return workItems.OrderByDescending(x => x.UpdatedAt).ToList();
+        }
+
         private DateTime? GetStatusDate(WorkItemViewModel workItem)
         {
             if (workItem.Status == WorkStatus.Done)
@@ -252,6 +278,20 @@ namespace FlowMetrics.Domain.Services
                 return workItem.BacklogDate;
 
             return null;
+        }
+
+        public void DeleteWorkItem(Guid? id)
+        {
+            if (id.HasValue)
+            {
+                var workItem = _workRepository.Find(id.Value);
+                var workSheet = _workSheetRepository.GetAll().FirstOrDefault(x => x.WorkItemId == id);
+
+                _workSheetRepository.Remove(workSheet);
+                _workRepository.Remove(workItem);
+
+                _transaction.Commit();
+            }
         }
     }
 }

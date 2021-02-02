@@ -246,6 +246,7 @@
                     CanUserResizeColumns="False"
                     CanUserResizeRows="False"
                     BorderBrush="DarkGray"
+                    MouseRightButtonUp="DataGridWorkItem_MouseRightButtonUp"
                     FontSize="13"
                     Margin="0 5 0 0">
                     <DataGrid.Columns>
@@ -254,6 +255,7 @@
                         <DataGridTextColumn Header="Epic" Width="23*" IsReadOnly="True" Binding="{Binding Path=Epic.Description}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Type" Width="8*" IsReadOnly="True" Binding="{Binding Path=Type}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Status" Width="27*" IsReadOnly="True" Binding="{Binding Path=Status}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Awaiting Accep. Date" Width="14*" IsReadOnly="True" Binding="{Binding Path=AwaitingAcceptanceTestsDate, StringFormat=\{0:dd/MM/yyyy\}}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Status Date" Width="14*" IsReadOnly="True" Binding="{Binding Path=StatusDate, StringFormat=\{0:dd/MM/yyyy\}}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Tech Debt" Width="13*" IsReadOnly="True" Binding="{Binding Path=TechDebt}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Assignee" Width="15*" IsReadOnly="True" Binding="{Binding Path=Assignee.Name}"></DataGridTextColumn>

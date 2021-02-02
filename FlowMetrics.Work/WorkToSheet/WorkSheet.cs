@@ -32,5 +32,6 @@ namespace FlowMetrics.Work.WorkToSheet
         public string Observations { get; set; }
         public WorkItem WorkItem { get; set; }
         public Guid WorkItemId { get; set; }
+        public string Priority { get; set; }
     }
 }

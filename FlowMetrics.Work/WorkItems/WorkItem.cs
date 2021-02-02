@@ -52,12 +52,11 @@ namespace FlowMetrics.Work.WorkItems
         public DateTime? StartImpedimentDate { get; private set; }
         public DateTime? EndImpedimentDate { get; private set; }
         public string Observations { get; private set; }
+        public Priority? Priority { get; private set; }
 
         public void SetIssueId(string issueId) => IssueId = issueId;
         public void SetWeek(Week week) => Week = week;
-        public void SetIsTechDebt() => TechDebt = true;
-        public void SetIsNotTechDebt() => TechDebt = false;
-        private void SetTechDebt(bool techDebt) => TechDebt = techDebt;
+        public void SetTechDebt(bool techDebt) => TechDebt = techDebt;
         public void SetAssignee(Assignee assignee) => Assignee = assignee;
         public void SetAcceptanceReleaseDate(DateTime? dateAcceptance) => AcceptanceReleaseDate = dateAcceptance;
         public void SetProductionReleaseDate(DateTime? dateProduction) => ProductionReleaseDate = dateProduction;
@@ -79,5 +78,6 @@ namespace FlowMetrics.Work.WorkItems
         public void SetEndImpedimentDate(DateTime? end) => EndImpedimentDate = end;
         public void SetObservations(string obs) => Observations = obs;
         public void SetTeam(string team) => Team = team;
+        public void SetPriority(Priority priority) => Priority = priority;
     }
 }

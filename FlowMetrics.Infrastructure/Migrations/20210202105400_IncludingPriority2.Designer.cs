@@ -4,14 +4,16 @@ using FlowMetrics.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FlowMetrics.Infrastructure.Migrations
 {
     [DbContext(typeof(FlowMetricsContext))]
-    partial class FlowMetricsContextModelSnapshot : ModelSnapshot
+    [Migration("20210202105400_IncludingPriority2")]
+    partial class IncludingPriority2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

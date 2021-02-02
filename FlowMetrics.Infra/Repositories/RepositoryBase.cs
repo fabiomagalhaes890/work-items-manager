@@ -51,6 +51,8 @@ namespace FlowMetrics.Infra.Repositories
             _set.Update(entity);
         }
 
+        public void Remove(TEntity entity) => _set.Remove(entity);
+
         public TEntity Find(Guid id) => _set.Find(id);
 
         public IQueryable<TEntity> GetAll() => _set;

@@ -4,7 +4,6 @@ using FlowMetrics.Domain.ViewModel.Epic;
 using FlowMetrics.Domain.ViewModel.Week;
 using FlowMetrics.Domain.ViewModel.WorkItem;
 using FlowMetrics.Work.Enums;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Data;
@@ -77,6 +76,7 @@ namespace FlowMetrics.View.WorkItems
             var teams = _assigneeApplicationService.GetAllTeams();
             var types = new List<WorkType> { WorkType.Bug, WorkType.Story, WorkType.Subtask, WorkType.Task };
             var epics = _epicApplicationService.GetAllOrderByDescending();
+            var priorities = new List<Priority> { Priority.Blocker, Priority.Critical, Priority.Major, Priority.Minor, Priority.Trivial, Priority.Evaluating };
 
             _weeks = new CollectionView(weeks);
 
@@ -86,6 +86,7 @@ namespace FlowMetrics.View.WorkItems
             CbbEpic.ItemsSource = new CollectionView(epics);
             CbbType.ItemsSource = types;
             CbbTeam.SelectedItem = null;
+            CbbPriority.ItemsSource = priorities;
         }
 
         private void LoadWorkStatusList()
@@ -174,11 +175,13 @@ namespace FlowMetrics.View.WorkItems
             _workItemViewModel.AcceptanceReleaseDate = AcceptanceReleaseDate.SelectedDate;
             _workItemViewModel.ProductionReleaseDate = ProductionReleaseDate.SelectedDate;
             _workItemViewModel.Assignee = (AssigneeViewModel)CbbAssignee.SelectedItem ?? _workItemViewModel.Assignee;
-            _workItemViewModel.Team = _workItemViewModel.Assignee != null ? _workItemViewModel.Assignee.Team : string.IsNullOrEmpty(team) ? _workItemViewModel.Team : team;
+            _workItemViewModel.Team = _workItemViewModel.Assignee != null ? _workItemViewModel.Assignee.Team : team;
             _workItemViewModel.StartImpedimentDate = StartImpedimentAt.SelectedDate;
             _workItemViewModel.EndImpedimentDate = EndImpedimentAt.SelectedDate;
             _workItemViewModel.Observations = ImpObservation.Text;
-            
+            _workItemViewModel.TechDebt = TechDebt.IsChecked ?? false;
+            _workItemViewModel.Priority = CbbPriority.SelectedItem != null ? (Priority)CbbPriority.SelectedItem : _workItemViewModel.Priority;
+
             _workItemViewModel.UpdatedBy = "master";
             _workItemViewModel.CreatedBy = "master";
 

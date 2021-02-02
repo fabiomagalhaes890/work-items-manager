@@ -3,6 +3,7 @@ using FlowMetrics.Domain.ViewModel.Week;
 using FlowMetrics.Domain.ViewModel.WorkItem;
 using FlowMetrics.View;
 using FlowMetrics.View.Epics;
+using FlowMetrics.View.Stocks;
 using FlowMetrics.View.Users;
 using FlowMetrics.View.Weeks;
 using FlowMetrics.View.WorkItems;
@@ -72,6 +73,12 @@ namespace FlowMetrics
                 ContentArea.Content =
                     new Users(_assigneeApplicationService);
             }
+
+            if (header == "Stocks")
+            {
+                ContentArea.Content =
+                    new Stocks(_workApplicationService);
+            }            
         }
     }
 }

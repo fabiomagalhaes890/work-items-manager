@@ -34,5 +34,6 @@ namespace FlowMetrics.Domain.ViewModel.WorkItem
         public WorkStatus Status { get; set; }
         public string Observations { get; set; }
         public DateTime? StatusDate { get; set; }
+        public Priority Priority { get; set; }
     }
 }
