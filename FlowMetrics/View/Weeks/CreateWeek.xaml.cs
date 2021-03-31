@@ -21,6 +21,14 @@ namespace FlowMetrics.View.Weeks
             _week = week;
 
             InitializeComponent();
+
+            LoadWeek();
+        }
+
+        private void LoadWeek()
+        {
+            IncludeDate.SelectedDate = _week.Start;
+            EndDate.SelectedDate = _week.End;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -30,10 +38,10 @@ namespace FlowMetrics.View.Weeks
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            SaveNewWeek();
+            WeekPersist();
         }
 
-        private void SaveNewWeek()
+        private void WeekPersist()
         {
             if (IncludeDate.SelectedDate == null || EndDate.SelectedDate == null)
             {
@@ -41,18 +49,10 @@ namespace FlowMetrics.View.Weeks
                 return;
             }
 
-            var weeks = _weekApplicationService.GetAllOrderByDescending();
-            var sequence = weeks.Max(x => x.Sequence) + 1;
+            _week.Start = IncludeDate.SelectedDate.GetValueOrDefault();
+            _week.End = EndDate.SelectedDate.GetValueOrDefault();
 
-            var week = new WeekViewModel
-            {
-                CreatedBy = "master",
-                Start = IncludeDate.SelectedDate.GetValueOrDefault(),
-                End = EndDate.SelectedDate.GetValueOrDefault(),
-                Sequence = sequence
-            };
-
-            _weekApplicationService.Create(week);
+            _weekApplicationService.CreateOrUpdate(_week);
             MessageBox.Show("Week has created", "Information.");
 
             Close();
@@ -62,7 +62,7 @@ namespace FlowMetrics.View.Weeks
         {
             if(e.Key == Key.Enter)
             {
-                SaveNewWeek();
+                WeekPersist();
             }
 
             if(e.Key == Key.Escape)

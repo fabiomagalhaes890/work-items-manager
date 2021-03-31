@@ -27,12 +27,35 @@ namespace FlowMetrics.Domain.Services
             _mapper = mappingConfig.CreateMapper();
         }
 
-        public void Create(WeekViewModel model)
+        public void CreateOrUpdate(WeekViewModel model)
         {
-            var workItem = _mapper.Map<Week>(model);
-            workItem.SetDescription();
+            var week = _mapper.Map<Week>(model);
 
-            _weekRepository.Add(workItem);
+            var result = _weekRepository.Find(week.Id);
+
+            if(result == null)
+            {
+                var weeks = GetAllOrderByDescending();
+                var sequence = weeks.Max(x => x.Sequence) + 1;
+
+                week.CreatedBy = "master";
+                
+                week.SetSequence(sequence);
+                week.SetDescription();                
+
+                _weekRepository.Add(week);
+            }
+            else
+            {
+                result.UpdatedBy = model.CreatedBy;
+
+                result.SetStart(model.Start);
+                result.SetEnd(model.End);
+                result.SetDescription();
+                result.SetSequence(model.Sequence);
+
+                _weekRepository.Update(result);
+            }
 
             _transaction.Commit();
         }

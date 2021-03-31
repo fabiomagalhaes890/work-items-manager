@@ -53,6 +53,8 @@ namespace FlowMetrics.Work.WorkItems
         public DateTime? EndImpedimentDate { get; private set; }
         public string Observations { get; private set; }
         public Priority? Priority { get; private set; }
+        public bool? Removed { get; private set; }
+        public ImpedimentKind? ImpedimentKind { get; private set; }
 
         public void SetIssueId(string issueId) => IssueId = issueId;
         public void SetWeek(Week week) => Week = week;
@@ -79,5 +81,8 @@ namespace FlowMetrics.Work.WorkItems
         public void SetObservations(string obs) => Observations = obs;
         public void SetTeam(string team) => Team = team;
         public void SetPriority(Priority priority) => Priority = priority;
+        public void RemoveItem() => Removed = true;
+        public void RestoreItem() => Removed = false;
+        public void SetImpedimentKind(ImpedimentKind? impedimentKind) => ImpedimentKind = impedimentKind;
     }
 }

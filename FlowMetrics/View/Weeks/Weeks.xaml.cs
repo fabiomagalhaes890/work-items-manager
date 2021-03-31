@@ -49,7 +49,7 @@ namespace FlowMetrics.View.Weeks
             var week =
                 new CreateWeek(
                     _weekApplicationService,
-                    null);
+                    new WeekViewModel());
 
             week.ShowDialog();
 

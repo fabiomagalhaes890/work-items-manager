@@ -72,6 +72,7 @@ namespace FlowMetrics.Domain.Services
 
                 var week = _mapper.Map<Week>(model.Week);
                 var assignee = _mapper.Map<Assignee>(model.Assignee);
+                var epic = _mapper.Map<Epic>(model.Epic);
 
                 var team = assignee != null ? assignee.Team : model.Team;
 
@@ -86,7 +87,9 @@ namespace FlowMetrics.Domain.Services
                 result.SetTeam(team);
                 result.SetTechDebt(model.TechDebt);
                 result.SetPriority(model.Priority);
-
+                result.SetImpedimentKind(model.ImpedimentKind);
+                
+                result.EpicId = epic.Id;
                 result.AssigneeId = assignee?.Id;                
 
                 if (dateChanged != null)
@@ -170,7 +173,7 @@ namespace FlowMetrics.Domain.Services
 
         public IEnumerable<WorkItemViewModel> GetWorkItemsByFilter(FilterToWorkItem filter)
         {
-            var result = _workRepository.GetAll().ToList();
+            var result = _workRepository.GetAll().Where(x => x.Removed != true).ToList();
 
             if (!string.IsNullOrEmpty(filter.Search))
                 result = result.Where(x => x.IssueId.Contains(filter.Search)).ToList();
@@ -224,6 +227,9 @@ namespace FlowMetrics.Domain.Services
             workItems = workItems.Select(x =>
             {
                 x.StatusDate = GetStatusDate(x);
+                x.IsImpeded = (x.StartImpedimentDate != null && x.EndImpedimentDate == null) ? "Yes" : "No";
+                x.WasImpeded = (x.StartImpedimentDate != null && x.EndImpedimentDate != null) ? "Yes" : "No";
+
                 return x;
             }).ToList();
 
@@ -232,7 +238,7 @@ namespace FlowMetrics.Domain.Services
 
         public IEnumerable<WorkItemViewModel> GetStockItemsByFilter(FilterToWorkItem filter)
         {
-            var result = _workRepository.GetAll().ToList();
+            var result = _workRepository.GetAll().Where(x => x.Removed != true).ToList();
 
             result = result.Where(x => x.ToDoDate == null).ToList();
 
@@ -288,7 +294,9 @@ namespace FlowMetrics.Domain.Services
                 var workSheet = _workSheetRepository.GetAll().FirstOrDefault(x => x.WorkItemId == id);
 
                 _workSheetRepository.Remove(workSheet);
-                _workRepository.Remove(workItem);
+
+                workItem.RemoveItem();
+                _workRepository.Update(workItem);
 
                 _transaction.Commit();
             }

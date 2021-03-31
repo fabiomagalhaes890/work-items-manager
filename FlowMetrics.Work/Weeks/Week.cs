@@ -18,7 +18,7 @@ namespace FlowMetrics.Work.Weeks
         public DateTime End { get; private set; }
         public int Sequence { get; private set; }
 
-        public void SetDescription() => Description = string.Format("{0:dd/MM/yy} a {1:dd/MM/yy} - {2}", Start, End, Sequence);
+        public void SetDescription() => Description = string.Format("{0:dd/MM/yyyy} a {1:dd/MM/yyyy} - {2}", Start, End, Sequence);
         public void SetStart(DateTime start) => Start = start;
         public void SetEnd(DateTime end) => End = end;
         public void SetSequence(int sequence) => Sequence = sequence;

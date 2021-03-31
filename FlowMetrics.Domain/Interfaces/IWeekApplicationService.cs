@@ -6,7 +6,7 @@ namespace FlowMetrics.Domain.Interfaces
     public interface IWeekApplicationService
     {
         IEnumerable<WeekViewModel> GetAllOrderByDescending();
-        void Create(WeekViewModel week);
+        void CreateOrUpdate(WeekViewModel week);
         IEnumerable<WeekViewModel> GetByFilter(string search);
     }
 }

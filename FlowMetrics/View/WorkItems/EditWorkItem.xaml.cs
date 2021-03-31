@@ -3,6 +3,7 @@ using FlowMetrics.Domain.ViewModel.Assignee;
 using FlowMetrics.Domain.ViewModel.Epic;
 using FlowMetrics.Domain.ViewModel.Week;
 using FlowMetrics.Domain.ViewModel.WorkItem;
+using FlowMetrics.View.Impediments;
 using FlowMetrics.Work.Enums;
 using System.Collections.Generic;
 using System.Windows;
@@ -61,12 +62,14 @@ namespace FlowMetrics.View.WorkItems
             ImpObservation.Text = _workItemViewModel.Observations;            
             TechDebt.IsChecked = _workItemViewModel.TechDebt;
             DateStatusChanged.SelectedDate = _workItemViewModel.StatusDate;
+            CbbPriority.SelectedItem = _workItemViewModel.Priority;
 
             CbbEpic.SelectedItem = _workItemViewModel.Epic;
             CbbWeek.SelectedItem = _workItemViewModel.Week;
             CbbType.SelectedItem = _workItemViewModel.Type;
             CbbAssignee.SelectedItem = _workItemViewModel.Assignee;
             CbbTeam.SelectedItem = _workItemViewModel.Team;
+            CbbImpedimentKinds.SelectedItem = _workItemViewModel.ImpedimentKind;
         }
 
         private void LoadAllData()
@@ -77,6 +80,7 @@ namespace FlowMetrics.View.WorkItems
             var types = new List<WorkType> { WorkType.Bug, WorkType.Story, WorkType.Subtask, WorkType.Task };
             var epics = _epicApplicationService.GetAllOrderByDescending();
             var priorities = new List<Priority> { Priority.Blocker, Priority.Critical, Priority.Major, Priority.Minor, Priority.Trivial, Priority.Evaluating };
+            var impedimentKinds = new List<ImpedimentKind> { ImpedimentKind.Architect, ImpedimentKind.BetweenActivities, ImpedimentKind.Business, ImpedimentKind.DevOps, ImpedimentKind.External, ImpedimentKind.Tech };
 
             _weeks = new CollectionView(weeks);
 
@@ -87,6 +91,7 @@ namespace FlowMetrics.View.WorkItems
             CbbType.ItemsSource = types;
             CbbTeam.SelectedItem = null;
             CbbPriority.ItemsSource = priorities;
+            CbbImpedimentKinds.ItemsSource = new CollectionView(impedimentKinds);
         }
 
         private void LoadWorkStatusList()
@@ -181,6 +186,7 @@ namespace FlowMetrics.View.WorkItems
             _workItemViewModel.Observations = ImpObservation.Text;
             _workItemViewModel.TechDebt = TechDebt.IsChecked ?? false;
             _workItemViewModel.Priority = CbbPriority.SelectedItem != null ? (Priority)CbbPriority.SelectedItem : _workItemViewModel.Priority;
+            _workItemViewModel.ImpedimentKind = (ImpedimentKind?)CbbImpedimentKinds.SelectedItem;
 
             _workItemViewModel.UpdatedBy = "master";
             _workItemViewModel.CreatedBy = "master";
@@ -206,6 +212,14 @@ namespace FlowMetrics.View.WorkItems
             {
                 Close();
             }
+        }
+
+        private void Impediments_Click(object sender, RoutedEventArgs e)
+        {
+            var impedimentsView = 
+                new WorkItemImpediment();
+
+            impedimentsView.ShowDialog();
         }
     }
 }

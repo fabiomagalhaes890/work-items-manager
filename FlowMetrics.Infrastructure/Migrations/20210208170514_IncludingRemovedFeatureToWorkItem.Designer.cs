@@ -4,14 +4,16 @@ using FlowMetrics.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FlowMetrics.Infrastructure.Migrations
 {
     [DbContext(typeof(FlowMetricsContext))]
-    partial class FlowMetricsContextModelSnapshot : ModelSnapshot
+    [Migration("20210208170514_IncludingRemovedFeatureToWorkItem")]
+    partial class IncludingRemovedFeatureToWorkItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,9 +172,6 @@ namespace FlowMetrics.Infrastructure.Migrations
 
                     b.Property<Guid>("EpicId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("ImpedimentKind")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("InProgressDate")
                         .HasColumnType("datetime2");

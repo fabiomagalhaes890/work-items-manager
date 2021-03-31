@@ -68,6 +68,7 @@ namespace FlowMetrics.View.WorkItems
             var types = new List<WorkType> { WorkType.Bug, WorkType.Story, WorkType.Subtask, WorkType.Task };
             CbbType.ItemsSource = new CollectionView(types);
 
+
             var status = new List<WorkStatus> { 
                 WorkStatus.Backlog,
                 WorkStatus.ToDo,
@@ -124,6 +125,8 @@ namespace FlowMetrics.View.WorkItems
 
             var filters = GetFilters();
             LoadWorkItems(filters);
+
+            WorkItemSearch.Focus();
         }
 
         private void DataGridWorkItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -144,6 +147,8 @@ namespace FlowMetrics.View.WorkItems
 
                 var filters = GetFilters();
                 LoadWorkItems(filters);
+
+                WorkItemSearch.Focus();
             }
         }
 
